@@ -9,7 +9,8 @@ CREATE TABLE products (
   product_name VARCHAR(50) NOT NULL,
   department_name VARCHAR(30) NOT NULL,
   price DECIMAL(10,2) NOT NULL,
-  stock_quantity INTEGER(10)
+  stock_quantity INTEGER(10),
+  primary key (item_id)
 );
 
 -- Added 10 dummy rows --
