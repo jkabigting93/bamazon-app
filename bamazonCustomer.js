@@ -11,7 +11,7 @@ var connection = mysql.createConnection({
 // Require Inquirer
 var inquirer = require("inquirer");
 
-// Connect to Bamazon MySQL database and call queryInventory + queryPurchase functions
+// Connect to Bamazon MySQL database and call queryInventory function
 connection.connect(function(err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId);
