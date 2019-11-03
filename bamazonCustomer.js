@@ -54,8 +54,53 @@ function promptUser() {
             message: "How much of this item would you like to purchase?"
         }
         
-        // Check if Bamazon has enough supply of that particular item
     ]).then(function(response) {
+        // Check if Bamazon has enough supply of that particular item
         console.log(response);
+        var item = parseInt(response.item);
+        var quantity = parseInt(response.quantity);
+        connection.query("SELECT * FROM products WHERE item_id = ?", [item], function(error, response) {
+            if (error) {
+                console.log("There was an error.");
+                promptUser();
+            } else {
+                queryID = response[0];
+                // If enough supply, display price and update db
+                if (queryID.stock_quantity > quantity) {
+                    console.log("We have sufficient supply for your request!");
+                    var newTotal = queryID.stock_quantity - quantity;
+                    var price = quantity * queryID.price;
+                    connection.query("UPDATE products SET stock_quantity = " + newTotal + " WHERE item_id = ?", [item], function(error, response){
+                        if (error) {
+                            console.log("Quantity update failed.");
+                            promptUser();
+                        } else {
+                            console.log("Your total cost is " + price + "!");
+                            successRestart();
+                        }
+                    })
+                } else {
+                    console.log("Insufficient quantity!")
+                    promptUser();
+            }
+        }}
+    )}
+)}
+
+// Define successRestart - asks if you wish to make another purchase upon successful transaction
+function successRestart() {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "restart",
+            message: "Thank you for your purchase! Would you like to continue shopping? (y/n)"
+        }
+    ]).then(function(response) {
+        if (response.restart === "y") {
+            queryInventory();
+        } else {
+            console.log("Goodbye!");
+            connection.end();
+        }
     })
 }
