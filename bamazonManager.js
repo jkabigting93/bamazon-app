@@ -32,6 +32,7 @@ function managerActions() {
             choices: ["View Products for Sale", "View Low Inventory", "Add to Inventory", "Add New Product"]
         }
     ]).then(function(response) {
+
         switch (response.actionChoice) {
             case "View Products for Sale":
                 connection.query("SELECT * FROM products", function(err, res) {
@@ -44,6 +45,7 @@ function managerActions() {
                     managerRestart();
                 })
                 break;
+
             case "View Low Inventory":
                 connection.query("SELECT * FROM products where stock_quantity < 5", function(err,res) {
                     if (err) throw err;
@@ -59,12 +61,54 @@ function managerActions() {
                     managerRestart();
                 })
                 break;
-            case "Add to Inventory":
+
+            case "Update Inventory":
                 break;
+                
             case "Add New Product":
+                inquirer.prompt([
+                    {
+                        type: "input",
+                        name: "product_name",
+                        message: "What is the name of the product being added?"
+                    },
+                    {
+                        type: "input",
+                        name: "department_name",
+                        message: "What department is this being stocked in?"
+                    },
+                    {
+                        type: "input",
+                        name: "price",
+                        message: "How much does each unit cost?"
+                    },
+                    {
+                        type: "input",
+                        name: "stock_quantity",
+                        message: "How many units are being added?"
+                    }
+                ]).then(function(response) {
+                    var item = response.product_name;
+                    var dept = response.department_name;
+                    var price = response.price;
+                    var amount = response.stock_quantity;
+                    connection.query("INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES (?, ?, ?, ?)", [item, dept, price, amount], function(error, response) {
+                        if (error) {
+                            console.log(
+                                "Add Product failed.",
+                                "\n---------------------------------------------------------"
+                            );
+                            managerRestart();
+                        } else {
+                            console.log("The item has successfully been added!");
+                            managerRestart();
+                        };
+                    });
+                })
                 break;
-        };
-    })
+            };
+        }
+    )
 }
 
 // Define function to restart after picking an option

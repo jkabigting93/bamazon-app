@@ -55,6 +55,7 @@ function promptUser() {
         }
         
     ]).then(function(response) {
+
         // Check if Bamazon has enough supply of that particular item
         var item = parseInt(response.item);
         var quantity = parseInt(response.quantity);
@@ -67,6 +68,7 @@ function promptUser() {
                 promptUser();
             } else {
                 queryID = response[0];
+                
                 // If enough supply, display price and update db
                 if (queryID.stock_quantity > quantity) {
                     console.log(
