@@ -21,11 +21,16 @@ Initialize the customer app through the command "node bamazonCustomer.js". A lis
 Initialize the manager app through the command "node bamazonManager.js". A list of possible actions will be presented to you:
     * View Products for Sale - the app will list every available item;
     * View Low Inventory - the app will list all items with a count lower than 5;
-    * Update Inventory - the app will prompt you to provide the item ID of a product being restocked,
-    * Add New Product
+    * Update Inventory - the app will prompt you to provide the item ID of a product being restocked, then to provide the new total number of units;
+    * Add New Product - the app will prompt you to provide the name of the new item being added to the inventory, along with all values required by the schema;
+On completion, you will be prompted to decide if you want to run another action, or disconnect the app.
 
 4. Include screenshots, gifs or videos of the app functioning
 
+![Customer App Command Line](https://raw.githubusercontent.com/jkabigting93/bamazon-app/master/images/customer.PNG)
+![Database before purchase](https://raw.githubusercontent.com/jkabigting93/bamazon-app/master/images/customerDbBefore.PNG)
+![Database after purchase](https://raw.githubusercontent.com/jkabigting93/bamazon-app/master/images/customerDbAfter.PNG)
+The above screenshots show the customer app at work. Note how the first row of the database goes down by 10, just as input into the command line.
 
 
 5. Contain a link to a deployed version of the app
