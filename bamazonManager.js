@@ -72,7 +72,7 @@ function managerActions() {
                     {
                         type: "input",
                         name: "new_units",
-                        message: "How many units are being added?"
+                        message: "What is the new total count for this item?"
                     }
                 ]).then(function(response) {
                     var id = response.item_id;

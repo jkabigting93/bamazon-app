@@ -12,6 +12,18 @@ This app contains some dummy data on a store inventory. On startup, customers ar
 
 Firstly, ensure that the MySQL database is set up by running the schema file on MySQL workbench. Next, run an npm install on the root folder. Then, initialize the app in the command line.
 
+### Customers
+
+Initialize the customer app through the command "node bamazonCustomer.js". A list of current inventory will populate on the console, and you will be asked to provide the item ID of the product you wish to purchase. After providing this, you will be asked how many units you would like. If there is sufficient supply, the total cost will be displayed - if not, an error message would be given. On completion, you will be prompted to decide if you want to make another purchase, or disconnect the app.
+
+### Managers
+
+Initialize the manager app through the command "node bamazonManager.js". A list of possible actions will be presented to you:
+    * View Products for Sale - the app will list every available item;
+    * View Low Inventory - the app will list all items with a count lower than 5;
+    * Update Inventory - the app will prompt you to provide the item ID of a product being restocked,
+    * Add New Product
+
 4. Include screenshots, gifs or videos of the app functioning
 
 
