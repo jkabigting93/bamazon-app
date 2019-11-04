@@ -17,12 +17,30 @@ connection.connect(function(err) {
     console.log("connected as id " + connection.threadId);
     console.log(
         "************************************************************",
-        "\nWelcome to Bamazon!",
-        "\nThe following produts are available for purchase today:"
+        "\nWelcome, Bamazon Manager!"
     );
     managerActions();
 });
 
+// Define managerActions function - use switch case block to run various functions based on Manager's inquirer selection
 function managerActions() {
-    
+    inquirer.promt([
+        {
+            type: "list",
+            name: "actionChoice",
+            message: "The following actions are available to you:",
+            choices: ["View Products for Sale", "View Low Inventory", "Add to Inventory", "Add New Product"]
+        }
+    ]).then(function(response) {
+        switch (response) {
+            case response === "View Products for Sale":
+                break;
+            case response === "View Low Inventory":
+                break;
+            case response === "Add to Inventory":
+                break;
+            case response === "Add New Product":
+                break;
+        };
+    })
 }
