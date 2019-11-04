@@ -35,17 +35,17 @@ function managerActions() {
         switch (response.actionChoice) {
             case "View Products for Sale":
                 connection.query("SELECT * FROM products", function(err, res) {
-                    // if (err) throw err;
-                    if (err) console.log("Error Here");
-                    console.log("Item ID | Product Name | Department Name | Price ($) | Stock Quantity");
+                    if (err) throw err;
+                    console.log("Item ID | Product Name | Price ($) | Stock Quantity");
                     for (var i = 0; i < res.length; i++) {
-                        console.log(res[i].item_id + " | " + res[i].product_name + " | " + res[i].department_name + " | " + res[i].price + " | " + res[i].stock_quantity)
+                        console.log(res[i].item_id + " | " + res[i].product_name + " | " + res[i].price + " | " + res[i].stock_quantity)
                     }
                     console.log("---------------------------------------------------------");
                     managerRestart();
                 })
                 break;
             case "View Low Inventory":
+
                 break;
             case "Add to Inventory":
                 break;
