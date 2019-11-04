@@ -27,9 +27,9 @@ connection.connect(function(err) {
 function queryInventory() {
     connection.query("SELECT * FROM products", function(err, res) {
         if (err) throw err;
-        console.log("Item ID | Product Name | Department Name | Price ($) | Stock Quantity");
+        console.log("Item ID | Product Name | Price ($)");
         for (var i = 0; i < res.length; i++) {
-            console.log(res[i].item_id + " | " + res[i].product_name + " | " + res[i].department_name + " | " + res[i].price + " | " + res[i].stock_quantity);
+            console.log(res[i].item_id + " | " + res[i].product_name + " | " + res[i].price); 
         }
         console.log("---------------------------------------------------------");
         promptUser();
