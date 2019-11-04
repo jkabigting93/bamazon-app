@@ -29,7 +29,7 @@ function managerActions() {
             type: "list",
             name: "actionChoice",
             message: "The following actions are available to you:",
-            choices: ["View Products for Sale", "View Low Inventory", "Add to Inventory", "Add New Product"]
+            choices: ["View Products for Sale", "View Low Inventory", "Update Inventory", "Add New Product"]
         }
     ]).then(function(response) {
 
@@ -63,6 +63,33 @@ function managerActions() {
                 break;
 
             case "Update Inventory":
+                inquirer.prompt([
+                    {
+                        type: "input",
+                        name: "item_id",
+                        message: "Please provide the item ID of the product being restocked:"
+                    },
+                    {
+                        type: "input",
+                        name: "new_units",
+                        message: "How many units are being added?"
+                    }
+                ]).then(function(response) {
+                    var id = response.item_id;
+                    var newUnits = response.new_units;
+                    connection.query("UPDATE products SET stock_quantity = ? WHERE item_id = ?", [newUnits, id], function(error) {
+                        if (error) {
+                            console.log(
+                                "Update Product failed.",
+                                "\n---------------------------------------------------------"
+                            );
+                            managerRestart();
+                        } else {
+                            console.log("The item has successfully been updated!");
+                            managerRestart();
+                        }
+                    })
+                })
                 break;
                 
             case "Add New Product":
@@ -92,7 +119,7 @@ function managerActions() {
                     var dept = response.department_name;
                     var price = response.price;
                     var amount = response.stock_quantity;
-                    connection.query("INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES (?, ?, ?, ?)", [item, dept, price, amount], function(error, response) {
+                    connection.query("INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES (?, ?, ?, ?)", [item, dept, price, amount], function(error) {
                         if (error) {
                             console.log(
                                 "Add Product failed.",
