@@ -27,11 +27,47 @@ On completion, you will be prompted to decide if you want to run another action,
 
 4. Include screenshots, gifs or videos of the app functioning
 
+
+### Customers
+
 ![Customer App Command Line](https://raw.githubusercontent.com/jkabigting93/bamazon-app/master/images/customer.PNG)
-![Database before purchase](https://raw.githubusercontent.com/jkabigting93/bamazon-app/master/images/customerDbBefore.PNG)
-![Database after purchase](https://raw.githubusercontent.com/jkabigting93/bamazon-app/master/images/customerDbAfter.PNG)
+![Database Before Purchase](https://raw.githubusercontent.com/jkabigting93/bamazon-app/master/images/customerDbBefore.PNG)
+![Database After Purchase](https://raw.githubusercontent.com/jkabigting93/bamazon-app/master/images/customerDbAfter.PNG)
+
 The above screenshots show the customer app at work. Note how the first row of the database goes down by 10, just as input into the command line.
 
+### Managers
+
+![Manager App Initial View](https://raw.githubusercontent.com/jkabigting93/bamazon-app/master/images/managerFirstView.PNG)
+
+The above screenshot shows the list of actions available to managers.
+
+##### Managers - View All
+
+![Manager App View All](https://raw.githubusercontent.com/jkabigting93/bamazon-app/master/images/managerViewAll.PNG)
+
+The above screenshot shows the "View All" action at work - the entire inventory is shown.
+
+##### Managers - View Low Count
+
+![Manager App View Low Count](https://raw.githubusercontent.com/jkabigting93/bamazon-app/master/images/managerViewLow.PNG)
+
+The above screenshot shows the "View Low Count" action at work - only the items with a quantity lower than 5 are shown, which can be supported by the database table screenshots above.
+
+##### Managers - Update Database
+
+![Manager Update Command Line](https://raw.githubusercontent.com/jkabigting93/bamazon-app/master/images/managerUpdate.PNG)
+![Database Before Update](https://raw.githubusercontent.com/jkabigting93/bamazon-app/master/images/managerUpdateDbBefore.PNG)
+![Database After Update](https://raw.githubusercontent.com/jkabigting93/bamazon-app/master/images/managerUpdateDbAfter.PNG)
+
+The above screenshots show the "Update" action at work - as evidenced by the two database table screenshots below, the manager has successfully updated row 8 to a value of 30.
+
+##### Managers - Add New Product
+
+![Manager Add Product](https://raw.githubusercontent.com/jkabigting93/bamazon-app/master/images/managerAdd.PNG)
+![Database After Add](https://raw.githubusercontent.com/jkabigting93/bamazon-app/master/images/managerAddDb.PNG)
+
+The above screenshots show the "Add Product" action at work - here, a brand new product is added to the bottom of the database, as seen in the table screenshot.
 
 5. Contain a link to a deployed version of the app
 
