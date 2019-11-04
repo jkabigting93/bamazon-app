@@ -41,7 +41,8 @@ function managerActions() {
                     for (var i = 0; i < res.length; i++) {
                         console.log(res[i].item_id + " | " + res[i].product_name + " | " + res[i].department_name + " | " + res[i].price + " | " + res[i].stock_quantity)
                     }
-                    console.log("---------------------------------------------------------")
+                    console.log("---------------------------------------------------------");
+                    managerRestart();
                 })
                 break;
             case "View Low Inventory":
@@ -51,5 +52,26 @@ function managerActions() {
             case "Add New Product":
                 break;
         };
+    })
+}
+
+// Define function to restart after picking an option
+function managerRestart() {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "restart",
+            message: "Would you like to perform another function? (y/n)"
+        }
+    ]).then(function(response) {
+        if (response.restart === "y") {
+            managerActions();
+        } else {
+            console.log(
+                "Goodbye!",
+                "\n************************************************************"
+            );
+            connection.end();
+        }
     })
 }
