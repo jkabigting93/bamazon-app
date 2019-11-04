@@ -34,6 +34,7 @@ function managerActions() {
     ]).then(function(response) {
         switch (response) {
             case response === "View Products for Sale":
+                
                 break;
             case response === "View Low Inventory":
                 break;

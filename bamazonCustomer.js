@@ -56,34 +56,48 @@ function promptUser() {
         
     ]).then(function(response) {
         // Check if Bamazon has enough supply of that particular item
-        console.log(response);
         var item = parseInt(response.item);
         var quantity = parseInt(response.quantity);
         connection.query("SELECT * FROM products WHERE item_id = ?", [item], function(error, response) {
             if (error) {
-                console.log("There was an error.");
+                console.log(
+                    "There was an error.",
+                    "\n---------------------------------------------------------"
+                );
                 promptUser();
             } else {
                 queryID = response[0];
                 // If enough supply, display price and update db
                 if (queryID.stock_quantity > quantity) {
-                    console.log("We have sufficient supply for your request!");
+                    console.log(
+                        "We have sufficient supply for your request!"
+                    );
                     var newTotal = queryID.stock_quantity - quantity;
                     var price = quantity * queryID.price;
                     connection.query("UPDATE products SET stock_quantity = " + newTotal + " WHERE item_id = ?", [item], function(error, response){
                         if (error) {
-                            console.log("Quantity update failed.");
+                            console.log(
+                                "Quantity update failed.",
+                                "\n---------------------------------------------------------"
+                            );
                             promptUser();
                         } else {
-                            console.log("Your total cost is " + price + "!");
+                            console.log(
+                                "Your total cost is " + price + "!",
+                                "\n---------------------------------------------------------"
+                            );
                             successRestart();
                         }
                     })
                 } else {
-                    console.log("Insufficient quantity!")
+                    console.log(
+                        "Insufficient quantity!",
+                        "\n---------------------------------------------------------"
+                    )
                     promptUser();
-            }
-        }}
+                }
+           }
+        }
     )}
 )}
 
@@ -99,7 +113,10 @@ function successRestart() {
         if (response.restart === "y") {
             queryInventory();
         } else {
-            console.log("Goodbye!");
+            console.log(
+                "Goodbye!",
+                "************************************************************"
+            );
             connection.end();
         }
     })
